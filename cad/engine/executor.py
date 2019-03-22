@@ -49,6 +49,7 @@ class Executor:
                     raise Exception('no edge evaluated')
 
         logger.debug({'node': node})
+        return True
 
 
 

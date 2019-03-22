@@ -14,4 +14,4 @@ class ExecutorTestCase(unittest.TestCase):
                 )
             )
         )
-        ex.run()
+        self.assertTrue(ex.run())

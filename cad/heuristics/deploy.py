@@ -36,23 +36,11 @@ class Alert:
 
 
 class Yes:
-    """
-    def __init__(self):
-        self['action'] = 'yes'
-        self['evaluate'] = self.evaluate
-    """
-
     def evaluate(self, against):
         return against
 
 
 class No:
-    """
-    def __init__(self):
-        self['action'] = 'no'
-        self['evaluate'] = self.evaluate
-    """
-
     def evaluate(self, against):
         return not against
 
@@ -81,18 +69,11 @@ class Deploy:
         return G
 
 
-if __name__ == '__main__':
-    deploy = Deploy(
+def build_for_display():
+    return Deploy(
         LastDeploy(
-            'LastDeploy < 6 hours',
+            'LastDeploy < X hours',
             comparator=lambda x: x >= datetime.now() - timedelta(hours=6)
         )
     )
-    pdot = nx.drawing.nx_pydot.to_pydot(deploy.graph())
-    for edge in pdot.get_edges():
-        obj = edge.obj_dict.get('attributes', {}).get('object')
-        if obj is None:
-            continue
-        edge.set_label(obj)
-    pdot.write_png('deploy.png')
 
