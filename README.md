@@ -26,7 +26,7 @@ $ python bin/generate_graph.py examples.provider_strategy:build_for_display --ty
 ![examples provider_strategy](https://user-images.githubusercontent.com/321963/54880855-0d442300-4e20-11e9-95a5-b17a477d42a5.png)
 
 ### State Transitions
-| Node Name | State | Source | Yes Threshold |
+| Node Name | Evaluator | Query Source | Yes Threshold |
 | ------- | --------- | -------- | ----------- |
 |Strategy Error Rate > 50%|OneOfManyValuesThresholdEvaluator|StubQuery|Strategy Error Rate > 50%|
 |Region Strategy Error Rate > 50%|ManyValuesThresholdEvaluator|StubQuery|Region Strategy Error Rate > 50%|
