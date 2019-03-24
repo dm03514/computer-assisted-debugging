@@ -9,6 +9,8 @@ Computer Assisted Debugging Supports:
 - Automatic Documentation
 - Testability
 
+It's intended to be a place to codify common playbooks, and to execute them as soon as an incident starts.
+
 ---
 
 Debugging software is a foundational skill for software engineering.  Unfortunately, industry and academia do a poor job of teaching it.  This results in a wide range of skills between effective debuggers and ineffective debuggers. Computer assisted debugging provides a way for effective debuggers to encode their strategies and approaches into executable playbooks, by modeling debugging as a graph.  We see this with artifacts like playbooks. In much the way there are patterns for software construction and playbooks for service operation there exists patterns and playbooks for debugging.  I think as an industry we can do much better job of teaching techniques to assist in debugging.
