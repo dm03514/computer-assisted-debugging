@@ -2,15 +2,15 @@
 Heuristic based debug engine.  A happy medium between structured anomaly detection and unstructured/playbook based debugging
 
 
-## Commands
+### Commands
 
-### Generating Heuristic/Playbook Sequence Graph
+#### Generating Heuristic/Playbook Sequence Graph
 
 ```
 $ python bin/generate_graph.py examples.provider_strategy:build_for_display
 ```
 
-### Generating Heuristic/Playbook Table States
+#### Generating Heuristic/Playbook Table States
 
 ```
 $ python bin/generate_graph.py examples.provider_strategy:build_for_display --type=md_table
