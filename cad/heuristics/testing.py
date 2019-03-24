@@ -1,8 +1,8 @@
 
 
-class StubValue:
-    def __init__(self, value):
-        self._value = value
+class StubQuery:
+    def __init__(self, result):
+        self._result = result
 
-    def value(self):
-        return self._value
+    def result(self):
+        return self._result
