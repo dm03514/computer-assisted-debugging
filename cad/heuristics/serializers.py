@@ -7,7 +7,7 @@ class Markdown:
 
     def state_table(self):
         rows = [
-            '| Node Name | State | Source | Yes Threshold |',
+            '| Node Name | Evaluator | Query Source | Yes Threshold |',
             '| ------- | --------- | -------- | ----------- |',
         ]
 

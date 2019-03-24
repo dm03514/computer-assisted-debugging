@@ -16,10 +16,8 @@ class MarkdownTableTestCase(unittest.TestCase):
             )
         )
 
-        print(Markdown(deploy).state_table())
-
         self.assertEqual(
-            '''| Node Name | State | Source | Yes Threshold |
+            '''| Node Name | Evaluator | Query Source | Yes Threshold |
 | ------- | --------- | -------- | ----------- |
 |LastDeploy < X hours|SingleValueThresholdEvaluator|StubQuery|LastDeploy < X hours|''',
             Markdown(deploy).state_table()
