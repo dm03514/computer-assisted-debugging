@@ -30,20 +30,18 @@ Computer Assisted Debugging models playbooks as a Directed Graph.  FirstweEach s
 - `TransitionEvaluator` - This node contains a `query` and a `comparator`, it is responsible for invoking a `query` and making a binary decision using the `comparator`.  
 - `Alert` - This node performs an action such as logging or notification whenever it is traversed.
 
+In order to illustrate these concepts consider a common debug hueristic: **Last Deploy**.  The Last Deploy is one of the first things consulted when debugging.  This heursitic looks at the time of the last deploy and check to see if it is within some amount of time (recent).  The recency of the last deploy may be a strong enough signal to rollback on its own, or it may be combined with other signals (such as across the board errors, or errors associated with the changeset that was deployed).
 
+This heuristic looks like:
 
-# Playbook Examples
-
-## Deploy
-
-### Playbook
 ![cad heuristics deploy](https://user-images.githubusercontent.com/321963/54880914-bab73680-4e20-11e9-84a8-0ab20dbd8783.png)
 ### State Transitions
 | Node Name | Evaluator | Query Source | Yes Threshold |
 | ------- | --------- | -------- | ----------- |
 |LastDeploy < X hours|SingleValueThresholdEvaluator|StubQuery|LastDeploy < X hours|
 
----
+
+# Playbook Examples
 
 ## Provider Outage
 ### Playbook
