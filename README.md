@@ -1,5 +1,5 @@
 # computer-assisted-debugging
-Heuristic based debug engine.  A happy medium between structured anomaly detection and unstructured/playbook based debugging.
+Codify, Execute, and Visualize Playbooks.  A happy medium between structured anomaly detection and unstructured/playbook based debugging.
 
 Computer Assisted Debugging Supports:
 
