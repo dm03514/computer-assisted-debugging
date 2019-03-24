@@ -24,6 +24,13 @@ The problem with playbooks are many:
 
 Computer assisted debugging is a proof of concept to attempt to address some of the issues with manual debugging by allowing playbooks to be defind as a series of states and executed programmatically.  This achieves a consistent structure supporting sharing of debug techniques between multiple services, teams or companies.  
 
+# Getting Started
+Computer Assisted Debugging models playbooks as a Directed Graph.  FirstweEach state is only allowed to transition to one or more states, with the start of the playbook represented by a `Start` node and the end of the playbook represented by the `End` node.  Execution begins at `Starts` and traverses the playbook until `End` is reached.  There are two classes of Nodes other than Start/End:
+
+- `TransitionEvaluator` - This node contains a `query` and a `comparator`, it is responsible for invoking a `query` and making a binary decision using the `comparator`.  
+- `Alert` - This node performs an action such as logging or notification whenever it is traversed.
+
+
 
 # Playbook Examples
 
