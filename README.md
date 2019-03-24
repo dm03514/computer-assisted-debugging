@@ -27,7 +27,11 @@ Computer assisted debugging is a proof of concept to attempt to address some of 
 # Getting Started
 Computer Assisted Debugging models playbooks as a Directed Graph.  FirstweEach state is only allowed to transition to one or more states, with the start of the playbook represented by a `Start` node and the end of the playbook represented by the `End` node.  Execution begins at `Starts` and traverses the playbook until `End` is reached.  There are two classes of Nodes other than Start/End:
 
-- `TransitionEvaluator` - This node contains a `query` and a `comparator`, it is responsible for invoking a `query` and making a binary decision using the `comparator`.  
+- `Heuristic` - A common debugging pattern.  A number of these will be exposed by Computer Assisted Debugging, only requiring the end user to specify where to get data, and the thresholds that will be evaluated.
+- `Playbook` - A graph that follows the Computer Assisted Debugging rules, enabling evaluation, and automatic documentation generation
+- `TransitionEvaluator` - This node contains a `query` and a `comparator`, it is responsible for invoking a `query` and applying the `comparator` to the query results.  It then returns `True|False` based on the comparator results.
+- `query` - is an adapter responsible for pulling numeric data from a datasource.  Common datasources are Jenkins, Datadog, ElasticSearch, Prometheus, etc.
+- `comparator` - is a function used to evaluate a query result. This is applied to all results returned from the query.
 - `Alert` - This node performs an action such as logging or notification whenever it is traversed.
 
 In order to illustrate these concepts consider a common debug hueristic: **Last Deploy**.  The Last Deploy is one of the first things consulted when debugging.  This heursitic looks at the time of the last deploy and check to see if it is within some amount of time (recent).  The recency of the last deploy may be a strong enough signal to rollback on its own, or it may be combined with other signals (such as across the board errors, or errors associated with the changeset that was deployed).
@@ -40,6 +44,39 @@ This heuristic looks like:
 | ------- | --------- | -------- | ----------- |
 |LastDeploy < X hours|SingleValueThresholdEvaluator|StubQuery|LastDeploy < X hours|
 
+Computer Assisted Debugging includes the Deploy heuristic as part of the framework.  Using it requires a `TransitionEvaluator`, which then needs aa `query` and a comparator.  The full configuration required to generate the documentation above is:
+
+```
+    deploy_playbook = Deploy(
+        last_deploy=SingleValueThresholdEvaluator(
+            name='LastDeploy < X hours',
+            query=StubQuery(result=False),
+            comparator=lambda x: x >= datetime.now() - timedelta(hours=6)
+        )
+    )
+```
+
+A production ready implementation would use a Query that access a real datasource.  A common source of truth for deploy information may be AWS or Jenkins builds.  The framework leaves these adapters up to the end user.  
+
+```
+    deploy_playbook = Deploy(
+        last_deploy=SingleValueThresholdEvaluator(
+            name='LastDeploy < X hours',
+            query=JenkinsLastSuccessfulBuildQuery(
+              api_url,
+              project_name
+            ),
+            comparator=lambda x: x >= datetime.now() - timedelta(hours=6)
+        )
+    )
+```
+Computer Assisted Debugging supports executing any playbook using:
+
+```
+       ex = Executor(deploy_playbook)
+       ex.run()
+```
+This will traverse the deploy graph, querying the datasource and comparing the output when an evaluator node is reached, and traversing the rest of the nodes according to their individual rules.
 
 # Playbook Examples
 
