@@ -2,47 +2,9 @@ from datetime import datetime, timedelta
 
 import networkx as nx
 
-
-class Value:
-    def value(self):
-        pass
-
-
-class LastDeploy:
-    def __init__(self, name, comparator):
-        self.comparator = comparator
-        self.name = name
-
-    def value(self):
-        return self.value
-
-    def __repr__(self):
-        return self.name
-
-
-class Start:
-    def __repr__(self):
-        return 'start'
-
-
-class End:
-    def __repr__(self):
-        return 'end'
-
-
-class Alert:
-    def __repr__(self):
-        return 'alert'
-
-
-class Yes:
-    def evaluate(self, against):
-        return against
-
-
-class No:
-    def evaluate(self, against):
-        return not against
+from cad.heuristics.evaulators import SingleValueThresholdEvaluator
+from cad.heuristics.nodes import Yes, No, Start, Alert, End
+from cad.heuristics.testing import StubQuery
 
 
 class Deploy:
@@ -71,8 +33,9 @@ class Deploy:
 
 def build_for_display():
     return Deploy(
-        LastDeploy(
+        SingleValueThresholdEvaluator(
             'LastDeploy < X hours',
+            StubQuery(result=False),
             comparator=lambda x: x >= datetime.now() - timedelta(hours=6)
         )
     )
