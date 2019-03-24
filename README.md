@@ -16,7 +16,7 @@ $ python bin/generate_graph.py examples.provider_strategy:build_for_display
 $ python bin/generate_graph.py examples.provider_strategy:build_for_display --type=md_table
 ```
 
-# Examples
+# Playbook Examples
 
 ## Deploy
 
