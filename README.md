@@ -9,7 +9,7 @@ Computer Assisted Debugging Supports:
 - Automatic Documentation
 - Testability
 
-It's intended to be a place to codify common playbooks, and to execute them as soon as an incident starts.
+and is intended to be a place to codify common playbooks, and to execute them as soon as an incident starts.
 
 ---
 
