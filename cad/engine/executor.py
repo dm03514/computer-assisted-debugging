@@ -1,6 +1,6 @@
 import logging
 
-from cad.heuristics.deploy import Start, End
+from cad.heuristics.nodes import End
 
 ROOT_NODE = 0
 EDGE_TO = 1
@@ -38,7 +38,7 @@ class Executor:
                 continue
             elif len(edges) == 2:
                 # iterate edges data and evaluate()
-                value = node.value()
+                value = node.result()
                 logger.debug({'node': node, 'value': value})
                 for edge in edges:
                     if edge[EDGE_OBJECT_PAYLOAD]['data'].evaluate(value):
