@@ -7,18 +7,6 @@ from cad.heuristics.nodes import Yes, No, Start, Alert, End
 from cad.heuristics.testing import StubQuery
 
 
-class LastDeploy:
-    def __init__(self, name, comparator):
-        self.comparator = comparator
-        self.name = name
-
-    def value(self):
-        return self.value
-
-    def __repr__(self):
-        return self.name
-
-
 class Deploy:
     def __init__(self, last_deploy):
         self._graph = self._build_graph(last_deploy)
