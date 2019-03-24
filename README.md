@@ -5,6 +5,10 @@ Computer Assisted Debugging
 
 Debugging software is a foundational skill for software engineering.  Unfortunately, industry and academia do a poor job of teaching it.  This results in a wide range of skills between effective debuggers and ineffective debuggers. Computer assisted debugging provides a way for effective debuggers to encode their strategies and approaches into executable playbooks, by modeling debugging as a graph.  We see this with artifacts like playbooks. In much the way there are patterns for software construction and playbooks for service operation there exists patterns and playbooks for debugging.  I think as an industry we can do much better job of teaching techniques to assist in debugging.
 
+The purpose of computer assisted debugging is to allow different individuals to arrive at the same correct root conclusions in the shortest time possible.  In order to accomplish this "Playbooks" are used.  These are artifacts that provide a responder with an approach to arriving at common causes of issues.  The problem with playbooks are many:
+
+- Unstructured - If there even are playbooks, structure often varies widly between teams, services, and companies
+
 
 ### Commands
 
