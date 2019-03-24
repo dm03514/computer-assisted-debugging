@@ -20,6 +20,13 @@ $ python bin/generate_graph.py examples.provider_strategy:build_for_display --ty
 
 ## Deploy
 
+### Playbook
+![cad heuristics deploy](https://user-images.githubusercontent.com/321963/54880914-bab73680-4e20-11e9-84a8-0ab20dbd8783.png)
+### State Transitions
+| Node Name | Evaluator | Query Source | Yes Threshold |
+| ------- | --------- | -------- | ----------- |
+|LastDeploy < X hours|SingleValueThresholdEvaluator|StubQuery|LastDeploy < X hours|
+
 
 ## Provider Outage
 ### Playbook
