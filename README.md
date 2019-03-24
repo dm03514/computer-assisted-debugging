@@ -27,6 +27,7 @@ $ python bin/generate_graph.py examples.provider_strategy:build_for_display --ty
 | ------- | --------- | -------- | ----------- |
 |LastDeploy < X hours|SingleValueThresholdEvaluator|StubQuery|LastDeploy < X hours|
 
+---
 
 ## Provider Outage
 ### Playbook
