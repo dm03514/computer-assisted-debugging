@@ -1,5 +1,9 @@
 # computer-assisted-debugging
-Heuristic based debug engine.  A happy medium between structured anomaly detection and unstructured/playbook based debugging
+Heuristic based debug engine.  A happy medium between structured anomaly detection and unstructured/playbook based debugging.
+
+Computer Assisted Debugging 
+
+Debugging software is a foundational skill for software engineering.  Unfortunately, industry and academia do a poor job of teaching it.  This results in a wide range of skills between effective debuggers and ineffective debuggers. Computer assisted debugging provides a way for effective debuggers to encode their strategies and approaches into executable playbooks, by modeling debugging as a graph.  We see this with artifacts like playbooks. In much the way there are patterns for software construction and playbooks for service operation there exists patterns and playbooks for debugging.  I think as an industry we can do much better job of teaching techniques to assist in debugging.
 
 
 ### Commands
