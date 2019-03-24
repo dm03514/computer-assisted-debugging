@@ -4,11 +4,14 @@ import importlib
 import networkx as nx
 from networkx.drawing.nx_pydot import write_dot
 
+from cad.heuristics.serializers import Markdown
+
 parser = argparse.ArgumentParser(
     description='Generates a .png image from a heuristic graph'
 )
 
 parser.add_argument('heuristic', metavar='H', type=str, help='the heuristic to graph')
+parser.add_argument('--type', default='image', metavar='T', type=str, choices=['image', 'md_table'], help='')
 
 
 if __name__ == '__main__':
@@ -23,19 +26,25 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print(args)
     path, fn_name = args.heuristic.split(':')
-    fn = getattr(importlib.import_module(path), fn_name)
-    graph = fn().graph()
-    pdot = nx.drawing.nx_pydot.to_pydot(graph)
-    for edge in pdot.get_edges():
-        obj = edge.obj_dict.get('attributes', {}).get('object')
-        if obj is None:
-            continue
-        edge.set_label(obj)
+    build_fn = getattr(importlib.import_module(path), fn_name)
 
-    name = 'build/{}.png'.format(path)
-    print('saving graph: "{}"'.format(name))
-    pdot.write_png(name)
+    if args.type == 'image':
+        graph = build_fn().graph()
+        pdot = nx.drawing.nx_pydot.to_pydot(graph)
+        for edge in pdot.get_edges():
+            obj = edge.obj_dict.get('attributes', {}).get('object')
+            if obj is None:
+                continue
+            edge.set_label(obj)
 
-    name = 'build/{}.dot'.format(path)
-    write_dot(graph, name)
-    print('saving .dot: "{}"'.format(name))
+        name = 'build/{}.png'.format(path)
+        print('saving graph: "{}"'.format(name))
+        pdot.write_png(name)
+
+        name = 'build/{}.dot'.format(path)
+        write_dot(graph, name)
+        print('saving .dot: "{}"'.format(name))
+
+    elif args.type == 'md_table':
+        print(Markdown(build_fn()).state_table())
+
