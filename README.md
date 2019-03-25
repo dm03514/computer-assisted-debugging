@@ -15,7 +15,7 @@ Debugging software is a foundational skill for software engineering.  Unfortunat
 
 The purpose of computer assisted debugging is to allow different individuals to arrive at the same correct root conclusions in the shortest time possible.  In order to accomplish this "Playbooks" are used.  These are artifacts that provide a responder with an approach to arriving at common causes of issues.  
 
-The problem with playbooks are many:
+The problem with traditional playbooks are many:
 
 - **Unstructured** - If there even are playbooks, structure often varies widly between teams, services, and companies.  Without a structure, humans are responsible for interpreting and executing playbooks; playbooks are programs and people are computers and, it can (and does) fail spectacularly.
 - **Uniform - visually** - Playbook structures may vary wildly between teams, some may be lists, some may refrence images and links.  Standardizing Playbooks support a uniform feel across services, saving potentially precious seconds or minutes during incidents.
