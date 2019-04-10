@@ -1,6 +1,6 @@
 import logging
 
-from cad.heuristics.nodes import End
+from cad.heuristics.nodes import End, Alert
 
 ROOT_NODE = 0
 EDGE_TO = 1

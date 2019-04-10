@@ -1,3 +1,6 @@
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class JenkinsLastSuccessfulParameterizedBuildQuery:
@@ -7,6 +10,7 @@ class JenkinsLastSuccessfulParameterizedBuildQuery:
 
     def result(self):
         builds = self.c.builds()
+        result = []
         for build in builds:
             if build.is_success():
                 # check to see if this build matches the match dict
@@ -14,7 +18,10 @@ class JenkinsLastSuccessfulParameterizedBuildQuery:
                 build_params = build.params()
                 params_to_check = {k:build_params[k] for k in self.match.keys()}
                 if self.match == params_to_check:
-                    return [build.datetime()]
+                    logger.debug({'match': params_to_check})
+                    result = [build.datetime()]
+                    break
 
-        return []
+        logger.debug({'result': result})
+        return result
 
